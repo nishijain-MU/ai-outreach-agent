@@ -746,7 +746,7 @@
           "parameters": [
             {
               "name": "Authorization",
-              "value": "Bearer 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"
+              "value": "Bearer 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**"
             },
             {
               "name": "content-type",
