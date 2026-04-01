@@ -1,0 +1,1279 @@
+{
+  "name": "Sales Follow-up Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "7ec1ebbb-25f6-4114-8284-28fd8b4f4fa2",
+      "name": "Daily at 9 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        864,
+        -768
+      ]
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "=email",
+        "options": {
+          "disableDotNotation": false,
+          "removeOtherFields": false
+        }
+      },
+      "id": "f566ad79-c4b9-4017-8dd4-6ea908dad050",
+      "name": "Remove Duplicate Emails",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        -432
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI",
+          "mode": "list",
+          "cachedResultName": "Oohlala Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Name": "={{ $json.name }}",
+            "Email": "={{ $json.email }}",
+            "Size": "={{ $json.size }}",
+            "Age": "={{ $json.age }}",
+            "Location": "={{ $json.location }}",
+            "Gender": "={{ $json.gender }}",
+            "Lead ID": "={{ $json.leadId }}",
+            "ICP Qualified": "==TRUE",
+            "Status": "="
+          },
+          "matchingColumns": [
+            "Name"
+          ],
+          "schema": [
+            {
+              "id": "Lead ID",
+              "displayName": "Lead ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Size",
+              "displayName": "Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Age",
+              "displayName": "Age",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Gender",
+              "displayName": "Gender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ICP Qualified",
+              "displayName": "ICP Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Follow Up Sent Date",
+              "displayName": "Follow Up Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "10ed5065-4dcf-4dcb-8ff3-3d96b26cf40f",
+      "name": "Store in Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1392,
+        -816
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OOQCHoEA0OVD5X3p",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2352,
+        -336
+      ],
+      "id": "a5c76946-e882-4551-9b24-e8791eebd47c",
+      "name": "Wait",
+      "webhookId": "d00bb937-6af0-4ae5-bd03-68dc18917f48"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1920,
+        -608
+      ],
+      "id": "8500c830-9a27-4772-8cef-20444a01706b",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  // Valid ICP leads\n  { leadId: \"LEAD-001\", name: \"Priya Sharma\", email: \"priya.sharma@gmail.com\", size: \"3XL\", age: 28, location: \"Mumbai\", gender: \"Female\" },\n  { leadId: \"LEAD-002\", name: \"Sneha Gupta\", email: \"sneha.gupta@gmail.com\", size: \"4XL\", age: 32, location: \"Delhi\", gender: \"Female\" },\n  { leadId: \"LEAD-003\", name: \"Ananya Roy\", email: \"ananya.roy@gmail.com\", size: \"2XL\", age: 25, location: \"Bangalore\", gender: \"Female\" },\n  { leadId: \"LEAD-004\", name: \"Ritu Jain\", email: \"ritu.jain@gmail.com\", size: \"5XL\", age: 30, location: \"Chennai\", gender: \"Female\" },\n  { leadId: \"LEAD-005\", name: \"Meera Singh\", email: \"meera.singh@gmail.com\", size: \"6XL\", age: 35, location: \"Hyderabad\", gender: \"Female\" },\n  { leadId: \"LEAD-006\", name: \"Kavya Nair\", email: \"kavya.nair@gmail.com\", size: \"3XL\", age: 27, location: \"Pune\", gender: \"Female\" },\n  { leadId: \"LEAD-007\", name: \"Divya Menon\", email: \"divya.menon@gmail.com\", size: \"4XL\", age: 29, location: \"Kolkata\", gender: \"Female\" },\n  { leadId: \"LEAD-008\", name: \"Pooja Agarwal\", email: \"pooja.agarwal@gmail.com\", size: \"7XL\", age: 33, location: \"Ahmedabad\", gender: \"Female\" },\n  { leadId: \"LEAD-009\", name: \"Shruti Verma\", email: \"shruti.verma@gmail.com\", size: \"5XL\", age: 26, location: \"Mumbai\", gender: \"Female\" },\n  { leadId: \"LEAD-010\", name: \"Neha Kapoor\", email: \"neha.kapoor@gmail.com\", size: \"3XL\", age: 31, location: \"Delhi\", gender: \"Female\" },\n\n  // Duplicate entries — same email different name/details\n  { leadId: \"LEAD-011\", name: \"Priya S\", email: \"priya.sharma@gmail.com\", size: \"3XL\", age: 28, location: \"Mumbai\", gender: \"Female\" },\n  { leadId: \"LEAD-012\", name: \"Sneha G\", email: \"sneha.gupta@gmail.com\", size: \"4XL\", age: 32, location: \"Delhi\", gender: \"Female\" },\n  { leadId: \"LEAD-013\", name: \"Kavya Nair\", email: \"kavya.nair@gmail.com\", size: \"3XL\", age: 27, location: \"Pune\", gender: \"Female\" },\n\n  // Fake/invalid entries — should be filtered by ICP node\n  // Wrong size — below 2XL\n  { leadId: \"LEAD-014\", name: \"Ria Mehta\", email: \"ria.mehta@gmail.com\", size: \"XL\", age: 26, location: \"Mumbai\", gender: \"Female\" },\n  { leadId: \"LEAD-015\", name: \"Tanya Bose\", email: \"tanya.bose@gmail.com\", size: \"S\", age: 24, location: \"Delhi\", gender: \"Female\" },\n\n  // Wrong age — outside 24-35\n  { leadId: \"LEAD-016\", name: \"Sonal Desai\", email: \"sonal.desai@gmail.com\", size: \"3XL\", age: 19, location: \"Bangalore\", gender: \"Female\" },\n  { leadId: \"LEAD-017\", name: \"Rekha Pillai\", email: \"rekha.pillai@gmail.com\", size: \"4XL\", age: 45, location: \"Chennai\", gender: \"Female\" },\n\n  // Wrong location — tier 2 cities\n  { leadId: \"LEAD-018\", name: \"Anjali Tiwari\", email: \"anjali.tiwari@gmail.com\", size: \"5XL\", age: 29, location: \"Jaipur\", gender: \"Female\" },\n  { leadId: \"LEAD-019\", name: \"Preeti Yadav\", email: \"preeti.yadav@gmail.com\", size: \"3XL\", age: 31, location: \"Lucknow\", gender: \"Female\" },\n\n  // Wrong gender — should be filtered\n  { leadId: \"LEAD-020\", name: \"Rahul Sharma\", email: \"rahul.sharma@gmail.com\", size: \"3XL\", age: 28, location: \"Mumbai\", gender: \"Male\" },\n\n  // More valid ICP leads\n  { leadId: \"LEAD-021\", name: \"Ishika Chatterjee\", email: \"ishika.chatterjee@gmail.com\", size: \"4XL\", age: 34, location: \"Kolkata\", gender: \"Female\" },\n  { leadId: \"LEAD-022\", name: \"Mansi Patel\", email: \"mansi.patel@gmail.com\", size: \"2XL\", age: 27, location: \"Ahmedabad\", gender: \"Female\" },\n  { leadId: \"LEAD-023\", name: \"Ruhi Saxena\", email: \"ruhi.saxena@gmail.com\", size: \"6XL\", age: 30, location: \"Bangalore\", gender: \"Female\" },\n  { leadId: \"LEAD-024\", name: \"Simran Kohli\", email: \"simran.kohli@gmail.com\", size: \"3XL\", age: 25, location: \"Delhi\", gender: \"Female\" },\n  { leadId: \"LEAD-025\", name: \"Nandini Iyer\", email: \"nandini.iyer@gmail.com\", size: \"5XL\", age: 33, location: \"Hyderabad\", gender: \"Female\" }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        -768
+      ],
+      "id": "75601674-81a4-4dbb-815b-e114d1a5b7d0",
+      "name": "Leads data"
+    },
+    {
+      "parameters": {
+        "jsCode": "const tierOneCities = [\"Mumbai\", \"Delhi\", \"Bangalore\", \"Chennai\", \"Hyderabad\", \"Kolkata\", \"Pune\", \"Ahmedabad\"];\nconst validSizes = [\"2XL\", \"3XL\", \"4XL\", \"5XL\", \"6XL\", \"7XL\"];\n\nreturn items.filter(item => {\n  const lead = item.json;\n  const sizeMatch = validSizes.includes(lead.size);\n  const locationMatch = tierOneCities.includes(lead.location);\n  const ageMatch = lead.age >= 24 && lead.age <= 35;\n  const genderMatch = lead.gender === \"Female\";\n  return sizeMatch && locationMatch && ageMatch && genderMatch;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1168,
+        -592
+      ],
+      "id": "c02f6031-7bdd-433e-b781-f2b5313ec37e",
+      "name": "Filter ICP"
+    },
+    {
+      "parameters": {
+        "maxItems": 3
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        -592
+      ],
+      "id": "af96d01c-d5cb-42ec-bcf2-e3202eed2866",
+      "name": "Limits on leads1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const httpOutputs = $input.all();\nconst leadInputs = $('Limits on leads1').all();\n\nreturn httpOutputs.map((item, index) => {\n  const emailBody = item.json.choices[0].message.content;\n  const lead = leadInputs[index].json;\n  \n  return {\n    json: {\n      name: lead.name,\n      email: lead.email,\n      size: lead.size,\n      age: lead.age,\n      location: lead.location,\n      gender: lead.gender,\n      leadId: lead.leadId,\n      emailBody: emailBody\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1808,
+        -800
+      ],
+      "id": "d513a792-2faa-4541-a021-667efb508b9a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "=droplytics@gmail.com",
+        "subject": "={{ $json.Name }}, we built this for you - {{ $json['Lead ID'] }}",
+        "message": "={{ $json.emailBody }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2032,
+        -800
+      ],
+      "id": "958c835c-b021-4059-91df-2cc2825d873d",
+      "name": "Send a message",
+      "webhookId": "cc3a13a9-8b55-4499-b16b-5925cf3aea90",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3kzsCXCdkMkXAt9q",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "filters": {
+          "q": "=to:droplytics@gmail.com subject:we built this for you - {{ $json['Lead ID'] }} is:unread"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2528,
+        -336
+      ],
+      "id": "76a8ec8e-d031-49f6-a3dc-e1c8bd34ce7e",
+      "name": "Get many messages",
+      "webhookId": "26d510b9-7c35-44a4-a985-35150a516da1",
+      "executeOnce": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3kzsCXCdkMkXAt9q",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "374073de-17dd-4717-9afc-24e769e26687",
+              "leftValue": "={{ $json.opened }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2832,
+        -736
+      ],
+      "id": "06d58f37-c127-4242-a904-1437b653c8dd",
+      "name": "If",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI",
+          "mode": "list",
+          "cachedResultName": "Oohlala Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email Sent Date": "={{$now}}",
+            "Status": "=Email Sent",
+            "Lead ID": "={{ $('Merge').item.json['Lead ID'] }}",
+            "row_number": 0
+          },
+          "matchingColumns": [
+            "Lead ID"
+          ],
+          "schema": [
+            {
+              "id": "Lead ID",
+              "displayName": "Lead ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Size",
+              "displayName": "Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Age",
+              "displayName": "Age",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gender",
+              "displayName": "Gender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ICP Qualified",
+              "displayName": "ICP Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow Up Sent Date",
+              "displayName": "Follow Up Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2240,
+        -800
+      ],
+      "id": "7fae92e1-1c84-4650-926e-cc7678b2bc6f",
+      "name": "Email sent status",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OOQCHoEA0OVD5X3p",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI",
+          "mode": "list",
+          "cachedResultName": "Oohlala Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Status": "Opened",
+            "Lead ID": "={{ $json.leadId }}"
+          },
+          "matchingColumns": [
+            "Lead ID"
+          ],
+          "schema": [
+            {
+              "id": "Lead ID",
+              "displayName": "Lead ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Size",
+              "displayName": "Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Age",
+              "displayName": "Age",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gender",
+              "displayName": "Gender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ICP Qualified",
+              "displayName": "ICP Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow Up Sent Date",
+              "displayName": "Follow Up Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reply Received",
+              "displayName": "Reply Received",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3024,
+        -752
+      ],
+      "id": "8afbe593-0589-43d4-990e-ad79a0cdd05f",
+      "name": "Set status to Opened",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OOQCHoEA0OVD5X3p",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  { json: { leadId: \"LEAD-001\", name: \"Priya Sharma\", email: \"droplytics@gmail.com\", size: \"3XL\", location: \"Mumbai\", opened: true } },\n  { json: { leadId: \"LEAD-002\", name: \"Sneha Gupta\", email: \"droplytics@gmail.com\", size: \"4XL\", location: \"Delhi\", opened: false } },\n  { json: { leadId: \"LEAD-003\", name: \"Ananya Roy\", email: \"droplytics@gmail.com\", size: \"2XL\", location: \"Bangalore\", opened: false } }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        -336
+      ],
+      "id": "663de4e1-cda2-48d5-afbc-b972c8e9e95f",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.1-8b-instant\",\n  \"max_tokens\": 500,\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Write a warm personal outreach email for OohLaLa a premium lingerie and nightwear brand built for mid and plus-size women. Name: {{ $json.name }} Size: {{ $json.size }} City: {{ $json.location }} Age: {{ $json.age }}. Address them by first name directly. Do not write Dear [Name]. Keep under 120 words. This is a cold outreach email to someone who has never heard of OohLaLa before. CTA to visit https://myoohlalastory.com give proper paragrapgh changes and do not add subject, Sign off as Nishi Co-Founder OohLaLa.\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1616,
+        -800
+      ],
+      "id": "2e8fe825-df3b-4606-85ea-6edcdf594748",
+      "name": "personalised mail"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.1-8b-instant\",\n  \"max_tokens\": 500,\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Write a short warm follow-up email for OohLaLa a premium lingerie and nightwear brand for mid and plus-size women. Name: {{ $json.name }} in {{ $json.location }}. They have not yet explored our collection. Offer them 5% off their first order with code CURVY. Make the offer feel exclusive not desperate. Keep under 80 words. Include link https://myoohlalastory.com give proper paragrapgh changes and do not add subject, Sign off as Nishi Co-Founder OohLaLa.\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2944,
+        -432
+      ],
+      "id": "1b179e9b-33f6-41b5-a7ca-c5606c57b9c0",
+      "name": "draft a follow up mail"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI",
+          "mode": "list",
+          "cachedResultName": "Oohlala Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1cHuJhaIEpzCGpSIE6WpcMQXPdJ49HfJOG2GZ9veQLwI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Lead ID": "={{ $('Merge2').item.json['Lead ID'] }}",
+            "Status": "Offer Pushed",
+            "Follow Up Sent Date": "={{$now}}"
+          },
+          "matchingColumns": [
+            "Lead ID"
+          ],
+          "schema": [
+            {
+              "id": "Lead ID",
+              "displayName": "Lead ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Size",
+              "displayName": "Size",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Age",
+              "displayName": "Age",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Gender",
+              "displayName": "Gender",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ICP Qualified",
+              "displayName": "ICP Qualified",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email Sent Date",
+              "displayName": "Email Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Follow Up Sent Date",
+              "displayName": "Follow Up Sent Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Reply Received",
+              "displayName": "Reply Received",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3600,
+        -624
+      ],
+      "id": "f329b6e8-cec0-4664-81d8-c6dce282bb4c",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "OOQCHoEA0OVD5X3p",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "=droplytics@gmail.com",
+        "subject": "=Hi {{ $json.Name }}, a little something for you",
+        "message": "={{ $json.choices[0].message.content }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3424,
+        -624
+      ],
+      "id": "2d1733a7-86e8-426d-8e6c-bee7add8eccc",
+      "name": "push an offer/followup",
+      "webhookId": "cc3a13a9-8b55-4499-b16b-5925cf3aea90",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3kzsCXCdkMkXAt9q",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map(item => {\n  const emailBody = item.json.choices[0].message.content;\n  return {\n    json: {\n      ...item.json,\n      emailBody: emailBody\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3120,
+        -432
+      ],
+      "id": "71cd8e16-1334-46aa-89a1-20600b037065",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3232,
+        -624
+      ],
+      "id": "0a1ecce8-d99b-4d01-8fb0-25b944c918f8",
+      "name": "Merge2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Daily at 9 AM": {
+      "main": [
+        [
+          {
+            "node": "Leads data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicate Emails": {
+      "main": [
+        [
+          {
+            "node": "Store in Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store in Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Limits on leads1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Get many messages",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Leads data": {
+      "main": [
+        [
+          {
+            "node": "Filter ICP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter ICP": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicate Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limits on leads1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "personalised mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Email sent status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many messages": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Set status to Opened",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "draft a follow up mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email sent status": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "personalised mail": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "draft a follow up mail": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "push an offer/followup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "push an offer/followup": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set status to Opened": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "ec979a04-4d7e-4191-8043-2d3ce2eabc42",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "52b3f765175f19c7d9a8b1112e8895167143b0927bb461d657bba32eea6e67aa"
+  },
+  "id": "l7wqjMXQZFHEVT0I",
+  "tags": []
+}
